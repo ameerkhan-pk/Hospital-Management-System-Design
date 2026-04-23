@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>HMS</h2>
+      <ul>
+        <li onclick="window.location.href='/frontend/patients.html'">Patients</li>
+        <li onclick="window.location.href='/frontend/doctors.html'">Doctors</li>
+        <li onclick="window.location.href='/frontend/appointments.html'">Appointments</li>
+        <li onclick="window.location.href='/frontend/bills.html'">Bills</li>
+        <li class="active" onclick="window.location.href='/frontend/reports.html'">Reports</li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <div>
+          <h1>Reports Dashboard</h1>
+          <p>Run analytical hospital reports using joined data from multiple tables.</p>
+        </div>
+      </div>
+
+      <section class="card">
+        <h2>1. Full Appointment Summary by Patient</h2>
+        <div class="search-row">
+          <select id="appointmentReportPatient">
+            <option value="">Select Patient</option>
+          </select>
+          <button type="button" onclick="runAppointmentReport()">Run Report</button>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Patient ID</th>
+                <th>Patient Name</th>
+                <th>Doctor ID</th>
+                <th>Doctor Name</th>
+                <th>Department ID</th>
+                <th>Department</th>
+                <th>Appointment Date/Time</th>
+                <th>Status</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentReportBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. Lab Results by Patient</h2>
+        <div class="search-row">
+          <select id="labReportPatient">
+            <option value="">Select Patient</option>
+          </select>
+          <button type="button" onclick="runLabReport()">Run Report</button>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Patient ID</th>
+                <th>Patient Name</th>
+                <th>Ordering Doctor</th>
+                <th>Order Date</th>
+                <th>Test Name</th>
+                <th>Result Value</th>
+                <th>Normal Range</th>
+                <th>Result Date</th>
+              </tr>
+            </thead>
+            <tbody id="labReportBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3. Prescription History by Patient</h2>
+        <div class="search-row">
+          <select id="prescriptionReportPatient">
+            <option value="">Select Patient</option>
+          </select>
+          <button type="button" onclick="runPrescriptionReport()">Run Report</button>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Prescription ID</th>
+                <th>Prescribe Date</th>
+                <th>Doctor</th>
+                <th>Medicine</th>
+                <th>Dosage</th>
+                <th>Frequency</th>
+                <th>Duration (Days)</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="prescriptionReportBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/reports.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patients Management</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>HMS</h2>
+      <ul>
+        <li class="active" onclick="window.location.href='/frontend/patients.html'">Patients</li>
+        <li onclick="window.location.href='/frontend/doctors.html'">Doctors</li>
+        <li onclick="window.location.href='/frontend/appointments.html'">Appointments</li>
+        <li onclick="window.location.href='/frontend/bills.html'">Bills</li>
+        <li onclick="window.location.href='/frontend/reports.html'">Reports</li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <div>
+          <h1>Patients Dashboard</h1>
+          <p>Manage patient records, search, update, and delete.</p>
+        </div>
+      </div>
+
+      <section class="summary-cards">
+        <div class="summary-card">
+          <h3>Total Patients</h3>
+          <p id="totalPatients">0</p>
+        </div>
+        <div class="summary-card">
+          <h3>Male Patients</h3>
+          <p id="malePatients">0</p>
+        </div>
+        <div class="summary-card">
+          <h3>Female Patients</h3>
+          <p id="femalePatients">0</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 id="formTitle">Add New Patient</h2>
+        <form id="patientForm">
+          <input type="text" id="PatientID" placeholder="Patient ID (e.g. P11)" required />
+          <input type="text" id="FirstName" placeholder="First Name" required />
+          <input type="text" id="LastName" placeholder="Last Name" required />
+          <input type="date" id="DOB" required />
+
+          <select id="Gender" required>
+            <option value="">Select Gender</option>
+            <option value="M">Male (M)</option>
+            <option value="F">Female (F)</option>
+          </select>
+
+          <input type="text" id="Phone" placeholder="Phone" required />
+          <input type="text" id="Address" placeholder="Address" required />
+          <input type="text" id="BloodGroup" placeholder="Blood Group" required />
+          <input type="text" id="EmergencyContactName" placeholder="Emergency Contact Name" required />
+          <input type="text" id="EmergencyContactPhone" placeholder="Emergency Contact Phone" required />
+
+          <div class="form-buttons">
+            <button type="submit" id="submitBtn">Add Patient</button>
+            <button type="button" id="cancelEditBtn" style="display: none;">Cancel Edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Search Patients</h2>
+        <div class="search-row">
+          <input type="text" id="searchInput" placeholder="Search by Patient ID, First Name, or Last Name" />
+          <button type="button" onclick="searchPatients()">Search</button>
+          <button type="button" onclick="loadPatients()">Load All</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Patient Records</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Patient ID</th>
+                <th>Full Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Blood Group</th>
+                <th>Address</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="patientTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/patients.js"></script>
+</body>
+</html>

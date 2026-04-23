@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bills & Payments Management</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>HMS</h2>
+      <ul>
+        <li onclick="window.location.href='/frontend/patients.html'">Patients</li>
+        <li onclick="window.location.href='/frontend/doctors.html'">Doctors</li>
+        <li onclick="window.location.href='/frontend/appointments.html'">Appointments</li>
+        <li class="active" onclick="window.location.href='/frontend/bills.html'">Bills</li>
+        <li onclick="window.location.href='/frontend/reports.html'">Reports</li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <div>
+          <h1>Bills & Payments Dashboard</h1>
+          <p>Generate bills, record payments, track balances, and manage bill status.</p>
+        </div>
+      </div>
+
+      <section class="summary-cards">
+        <div class="summary-card">
+          <h3>Total Bills</h3>
+          <p id="totalBills">0</p>
+        </div>
+        <div class="summary-card">
+          <h3>Paid Bills</h3>
+          <p id="paidBills">0</p>
+        </div>
+        <div class="summary-card">
+          <h3>Unpaid / Partial</h3>
+          <p id="unpaidOrPartialBills">0</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 id="billFormTitle">Add New Bill</h2>
+        <form id="billForm">
+          <input type="text" id="BillID" placeholder="Bill ID (e.g. B11)" required />
+
+          <select id="BillPatientID" required>
+            <option value="">Select Patient</option>
+          </select>
+
+          <select id="AdmissionID">
+            <option value="">Select Admission (optional)</option>
+          </select>
+
+          <input type="date" id="BillDate" required />
+          <input type="number" step="0.01" id="TotalAmount" placeholder="Total Amount" required />
+
+          <select id="BillStatus" required>
+            <option value="">Select Status</option>
+            <option value="Pending">Pending</option>
+            <option value="Partial Paid">Partial Paid</option>
+            <option value="Paid">Paid</option>
+          </select>
+
+          <div class="form-buttons">
+            <button type="submit" id="billSubmitBtn">Add Bill</button>
+            <button type="button" id="billCancelEditBtn" style="display: none;">Cancel Edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Record Payment</h2>
+        <form id="paymentForm">
+          <input type="text" id="PaymentID" placeholder="Payment ID (e.g. PAY11)" required />
+
+          <select id="PaymentBillID" required>
+            <option value="">Select Bill</option>
+          </select>
+
+          <input type="date" id="PaymentDate" required />
+          <input type="number" step="0.01" id="AmountPaid" placeholder="Amount Paid" required />
+
+          <select id="PaymentMethod" required>
+            <option value="">Select Method</option>
+            <option value="Cash">Cash</option>
+            <option value="Card">Card</option>
+            <option value="Check">Check</option>
+          </select>
+
+          <div class="form-buttons">
+            <button type="submit">Record Payment</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Search Bills</h2>
+        <div class="search-row">
+          <input type="text" id="billSearchInput" placeholder="Search by Bill ID, Patient, Admission, or Status" />
+          <button type="button" onclick="searchBills()">Search</button>
+          <button type="button" onclick="loadBills()">Load All</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Bill Records</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Bill ID</th>
+                <th>Patient</th>
+                <th>Admission ID</th>
+                <th>Bill Date</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+                <th>Amount Paid</th>
+                <th>Balance</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="billTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Payments for Selected Bill</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Payment ID</th>
+                <th>Bill ID</th>
+                <th>Payment Date</th>
+                <th>Amount Paid</th>
+                <th>Method</th>
+              </tr>
+            </thead>
+            <tbody id="paymentTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/bills.js"></script>
+</body>
+</html>

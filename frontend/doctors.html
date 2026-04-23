@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctors Management</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>HMS</h2>
+      <ul>
+        <li onclick="window.location.href='/frontend/patients.html'">Patients</li>
+        <li class="active" onclick="window.location.href='/frontend/doctors.html'">Doctors</li>
+        <li onclick="window.location.href='/frontend/appointments.html'">Appointments</li>
+        <li onclick="window.location.href='/frontend/bills.html'">Bills</li>
+        <li onclick="window.location.href='/frontend/reports.html'">Reports</li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <div>
+          <h1>Doctors Dashboard</h1>
+          <p>Manage doctor profiles, departments, search, update, and delete.</p>
+        </div>
+      </div>
+
+      <section class="summary-cards">
+        <div class="summary-card">
+          <h3>Total Doctors</h3>
+          <p id="totalDoctors">0</p>
+        </div>
+        <div class="summary-card">
+          <h3>Total Departments</h3>
+          <p id="totalDepartments">0</p>
+        </div>
+        <div class="summary-card">
+          <h3>Specializations</h3>
+          <p id="totalSpecializations">0</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 id="doctorFormTitle">Add New Doctor</h2>
+        <form id="doctorForm">
+          <input type="text" id="DoctorID" placeholder="Doctor ID (e.g. DR11)" required />
+
+          <select id="DeptID" required>
+            <option value="">Select Department</option>
+          </select>
+
+          <input type="text" id="FullName" placeholder="Full Name" required />
+          <input type="text" id="Phone" placeholder="Phone" required />
+          <input type="email" id="Email" placeholder="Email" required />
+          <input type="text" id="Specialization" placeholder="Specialization" required />
+
+          <div class="form-buttons">
+            <button type="submit" id="doctorSubmitBtn">Add Doctor</button>
+            <button type="button" id="doctorCancelEditBtn" style="display: none;">Cancel Edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Search Doctors</h2>
+        <div class="search-row">
+          <input type="text" id="doctorSearchInput" placeholder="Search by Doctor ID, Name, Specialization, or Department" />
+          <button type="button" onclick="searchDoctors()">Search</button>
+          <button type="button" onclick="loadDoctors()">Load All</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Doctor Records</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Doctor ID</th>
+                <th>Full Name</th>
+                <th>Specialization</th>
+                <th>Department</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="doctorTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/doctors.js"></script>
+</body>
+</html>

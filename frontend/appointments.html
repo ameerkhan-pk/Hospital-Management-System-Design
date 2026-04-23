@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appointments Management</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>HMS</h2>
+      <ul>
+        <li onclick="window.location.href='/frontend/patients.html'">Patients</li>
+        <li onclick="window.location.href='/frontend/doctors.html'">Doctors</li>
+        <li class="active" onclick="window.location.href='/frontend/appointments.html'">Appointments</li>
+        <li onclick="window.location.href='/frontend/bills.html'">Bills</li>
+        <li onclick="window.location.href='/frontend/reports.html'">Reports</li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <div>
+          <h1>Appointments Dashboard</h1>
+          <p>Schedule, search, update, and delete appointments with linked patient and doctor data.</p>
+        </div>
+      </div>
+
+      <section class="summary-cards">
+        <div class="summary-card">
+          <h3>Total Appointments</h3>
+          <p id="totalAppointments">0</p>
+        </div>
+        <div class="summary-card">
+          <h3>Scheduled</h3>
+          <p id="scheduledAppointments">0</p>
+        </div>
+        <div class="summary-card">
+          <h3>Completed</h3>
+          <p id="completedAppointments">0</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 id="appointmentFormTitle">Add New Appointment</h2>
+        <form id="appointmentForm">
+          <input type="text" id="AppointmentID" placeholder="Appointment ID (e.g. AP11)" required />
+
+          <select id="PatientID" required>
+            <option value="">Select Patient</option>
+          </select>
+
+          <select id="DoctorID" required>
+            <option value="">Select Doctor</option>
+          </select>
+
+          <input type="datetime-local" id="ApptDateTime" required />
+
+          <select id="Status" required>
+            <option value="">Select Status</option>
+            <option value="Scheduled">Scheduled</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+
+          <input type="text" id="Reason" placeholder="Reason for Appointment" required />
+
+          <div class="form-buttons">
+            <button type="submit" id="appointmentSubmitBtn">Add Appointment</button>
+            <button type="button" id="appointmentCancelEditBtn" style="display: none;">Cancel Edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Search Appointments</h2>
+        <div class="search-row">
+          <input type="text" id="appointmentSearchInput" placeholder="Search by Appointment ID, Patient, Doctor, Status, Reason, or Department" />
+          <button type="button" onclick="searchAppointments()">Search</button>
+          <button type="button" onclick="loadAppointments()">Load All</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Appointment Records</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Appointment ID</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Department</th>
+                <th>Date & Time</th>
+                <th>Status</th>
+                <th>Reason</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/appointments.js"></script>
+</body>
+</html>
